@@ -1,7 +1,11 @@
+import codecs
+import contextlib
 import itertools
 import json
 import re
 import os
+
+from distlib.resources import finder
 
 from jsonschema.compat import str_types, MutableMapping, urlsplit
 
@@ -53,18 +57,19 @@ def load_schema(name):
     Load a schema from ./schemas/``name``.json and return it.
 
     """
-    schemadir = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)),
-        'schemas'
-    )
-    schemapath = os.path.join(schemadir, '%s.json' % (name,))
-    with open(schemapath) as f:
+    f = finder('jsonschema')
+    rname = 'schemas/%s.json' % name
+    r = f.find(rname)
+    if not r:
+        raise ValueError('Schema not found: %r' % name)
+    with contextlib.closing(r.as_stream()) as f:
+        f = codecs.getreader('utf-8')(f)
         return json.load(f)
 
 
 def indent(string, times=1):
     """
-    A dumb version of :func:`textwrap.indent` from Python 3.3.
+    A dumb version of :func:`textwrap.indegedit pacnt` from Python 3.3.
 
     """
 

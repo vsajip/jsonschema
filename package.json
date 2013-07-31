@@ -1,0 +1,74 @@
+{
+  "source": {
+    "package-data": {
+      "jsonschema": [
+        "schemas/*.json"
+      ]
+    },
+    "packages": [
+      "jsonschema",
+      "jsonschema.tests"
+    ]
+  },
+  "version": 1,
+  "index-metadata": {
+    "license": "MIT",
+    "description": "==========\njsonschema\n==========\n\n``jsonschema`` is an implementation of `JSON Schema <http://json-schema.org>`_\nfor Python (supporting 2.6+ including Python 3).\n\n.. code-block:: python\n\n    >>> from jsonschema import validate\n\n    >>> # A sample schema, like what we'd get from json.load()\n    >>> schema = {\n    ...     \"type\" : \"object\",\n    ...     \"properties\" : {\n    ...         \"price\" : {\"type\" : \"number\"},\n    ...         \"name\" : {\"type\" : \"string\"},\n    ...     },\n    ... }\n\n    >>> # If no exception is raised by validate(), the instance is valid.\n    >>> validate({\"name\" : \"Eggs\", \"price\" : 34.99}, schema)\n\n    >>> validate(\n    ...     {\"name\" : \"Eggs\", \"price\" : \"Invalid\"}, schema\n    ... )                                   # doctest: +IGNORE_EXCEPTION_DETAIL\n    Traceback (most recent call last):\n        ...\n    ValidationError: 'Invalid' is not of type 'number'\n\n\nFeatures\n--------\n\n* Full support for\n  `Draft 3 <https://python-jsonschema.readthedocs.org/en/latest/validate.html#jsonschema.Draft3Validator>`_\n  **and** `Draft 4 <https://python-jsonschema.readthedocs.org/en/latest/validate.html#jsonschema.Draft4Validator>`_\n  of the schema.\n\n* `Lazy validation <https://python-jsonschema.readthedocs.org/en/latest/validate.html#jsonschema.IValidator.iter_errors>`_\n  that can iteratively report *all* validation errors.\n\n* Small and extensible\n\n* `Programmatic querying <https://python-jsonschema.readthedocs.org/en/latest/errors.html#module-jsonschema>`_\n  of which properties or items failed validation.\n\n\nRelease Notes\n-------------\n\n``v2.0.0`` adds a better interface for creating and extending validators in the\nform of ``jsonschema.validators.create`` and ``jsonschema.validators.extend``.\nThe documentation is still a bit lacking in this area but it's getting there.\nSee the tests in ``jsonschema.tests.test_validators`` and the source code if\nyou'd like to try it out now. ``ValidatorMixin`` has been removed.\n\nPractically speaking, this affects validators that subclassed a built-in\nvalidator and extended a validator function (presumably with an upcall via\n``super``), as the correct way to do so is now to call\n``TheValidator.VALIDATORS[\"extended_validator_fn\"]`` directly in a new\nvalidator function (and of course to use ``create``). Examples hopefully coming\nsoon if more clarification is needed. Patches welcome of course.\n\nIt also fixes a number of issues with ref resolution, one for array indices\n(#95) and one for improper handling of unknown URI schemes (#102).\n\n\nRunning the Test Suite\n----------------------\n\n``jsonschema`` uses the wonderful `Tox <http://tox.readthedocs.org>`_ for its\ntest suite. (It really is wonderful, if for some reason you haven't heard of\nit, you really should use it for your projects).\n\nAssuming you have ``tox`` installed (perhaps via ``pip install tox`` or your\npackage manager), just run ``tox`` in the directory of your source checkout to\nrun ``jsonschema``'s test suite on all of the versions of Python ``jsonschema``\nsupports. Note that you'll need to have all of those versions installed in\norder to run the tests on each of them, otherwise ``tox`` will skip (and fail)\nthe tests on that version.\n\nOf course you're also free to just run the tests on a single version with your\nfavorite test runner. The tests live in the ``jsonschema.tests`` package.\n\n\nCommunity\n---------\n\nThere's a `mailing list <https://groups.google.com/forum/#!forum/jsonschema>`_ for this implementation on Google Groups.\n\nPlease join, and feel free to send questions there.\n\n\nContributing\n------------\n\nI'm Julian Berman.\n\n``jsonschema`` is on `GitHub <http://github.com/Julian/jsonschema>`_.\n\nGet in touch, via GitHub or otherwise, if you've got something to contribute,\nit'd be most welcome!\n\nYou can also generally find me on Freenode (nick: ``tos9``) in various\nchannels, including ``#python``.\n",
+    "metadata_version": "2.0",
+    "contacts": [
+      {
+        "role": "author",
+        "name": "Julian Berman",
+        "email": "Julian@GrayVines.com"
+      }
+    ],
+    "summary": "An implementation of JSON Schema validation for Python",
+    "project_urls": {
+      "Home": "http://github.com/Julian/jsonschema"
+    },
+    "version": "2.1.0.dev0",
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 2",
+      "Programming Language :: Python :: 2.6",
+      "Programming Language :: Python :: 2.7",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.1",
+      "Programming Language :: Python :: 3.2",
+      "Programming Language :: Python :: 3.3",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy"
+    ],
+    "name": "jsonschema"
+  },
+  "metadata": {
+    "name": "jsonschema",
+    "license": "MIT",
+    "author": "Julian Berman",
+    "home-page": "http://github.com/Julian/jsonschema",
+    "summary": "An implementation of JSON Schema validation for Python",
+    "version": "2.0.0",
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 2",
+      "Programming Language :: Python :: 2.6",
+      "Programming Language :: Python :: 2.7",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.1",
+      "Programming Language :: Python :: 3.2",
+      "Programming Language :: Python :: 3.3",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy"
+    ],
+    "author-email": "Julian@GrayVines.com",
+    "description": "==========\njsonschema\n==========\n\n``jsonschema`` is an implementation of `JSON Schema <http://json-schema.org>`_\nfor Python (supporting 2.6+ including Python 3).\n\n.. code-block:: python\n\n    >>> from jsonschema import validate\n\n    >>> # A sample schema, like what we'd get from json.load()\n    >>> schema = {\n    ...     \"type\" : \"object\",\n    ...     \"properties\" : {\n    ...         \"price\" : {\"type\" : \"number\"},\n    ...         \"name\" : {\"type\" : \"string\"},\n    ...     },\n    ... }\n\n    >>> # If no exception is raised by validate(), the instance is valid.\n    >>> validate({\"name\" : \"Eggs\", \"price\" : 34.99}, schema)\n\n    >>> validate(\n    ...     {\"name\" : \"Eggs\", \"price\" : \"Invalid\"}, schema\n    ... )                                   # doctest: +IGNORE_EXCEPTION_DETAIL\n    Traceback (most recent call last):\n        ...\n    ValidationError: 'Invalid' is not of type 'number'\n\n\nFeatures\n--------\n\n* Full support for\n  `Draft 3 <https://python-jsonschema.readthedocs.org/en/latest/validate.html#jsonschema.Draft3Validator>`_\n  **and** `Draft 4 <https://python-jsonschema.readthedocs.org/en/latest/validate.html#jsonschema.Draft4Validator>`_\n  of the schema.\n\n* `Lazy validation <https://python-jsonschema.readthedocs.org/en/latest/validate.html#jsonschema.IValidator.iter_errors>`_\n  that can iteratively report *all* validation errors.\n\n* Small and extensible\n\n* `Programmatic querying <https://python-jsonschema.readthedocs.org/en/latest/errors.html#module-jsonschema>`_\n  of which properties or items failed validation.\n\n\nRelease Notes\n-------------\n\n``v2.0.0`` adds a better interface for creating and extending validators in the\nform of ``jsonschema.validators.create`` and ``jsonschema.validators.extend``.\nThe documentation is still a bit lacking in this area but it's getting there.\nSee the tests in ``jsonschema.tests.test_validators`` and the source code if\nyou'd like to try it out now. ``ValidatorMixin`` has been removed.\n\nPractically speaking, this affects validators that subclassed a built-in\nvalidator and extended a validator function (presumably with an upcall via\n``super``), as the correct way to do so is now to call\n``TheValidator.VALIDATORS[\"extended_validator_fn\"]`` directly in a new\nvalidator function (and of course to use ``create``). Examples hopefully coming\nsoon if more clarification is needed. Patches welcome of course.\n\nIt also fixes a number of issues with ref resolution, one for array indices\n(#95) and one for improper handling of unknown URI schemes (#102).\n\n\nRunning the Test Suite\n----------------------\n\n``jsonschema`` uses the wonderful `Tox <http://tox.readthedocs.org>`_ for its\ntest suite. (It really is wonderful, if for some reason you haven't heard of\nit, you really should use it for your projects).\n\nAssuming you have ``tox`` installed (perhaps via ``pip install tox`` or your\npackage manager), just run ``tox`` in the directory of your source checkout to\nrun ``jsonschema``'s test suite on all of the versions of Python ``jsonschema``\nsupports. Note that you'll need to have all of those versions installed in\norder to run the tests on each of them, otherwise ``tox`` will skip (and fail)\nthe tests on that version.\n\nOf course you're also free to just run the tests on a single version with your\nfavorite test runner. The tests live in the ``jsonschema.tests`` package.\n\n\nCommunity\n---------\n\nThere's a `mailing list <https://groups.google.com/forum/#!forum/jsonschema>`_ for this implementation on Google Groups.\n\nPlease join, and feel free to send questions there.\n\n\nContributing\n------------\n\nI'm Julian Berman.\n\n``jsonschema`` is on `GitHub <http://github.com/Julian/jsonschema>`_.\n\nGet in touch, via GitHub or otherwise, if you've got something to contribute,\nit'd be most welcome!\n\nYou can also generally find me on Freenode (nick: ``tos9``) in various\nchannels, including ``#python``.\n"
+  }
+}
